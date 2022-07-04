@@ -9,6 +9,16 @@ import pandas as pd
 def scrape_shots(
         player_id: str
 ) -> pd.DataFrame:
+    """
+    Function to Scrape Shot x-y data from understat.com
+
+        Parameters:
+            player_id (str): Player ID as specified by understat
+        
+        Returns:
+            df (pd.DataFrame): Dataframe containing the shot locations of specified player
+
+    """
     base_url = 'https://understat.com/player/'
     player = player_id
 
