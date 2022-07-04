@@ -15,5 +15,5 @@ A repository that contains code related to football analytics and visualization 
 
 
 ## Guide to repository:
-- All code used is available in the utils folder
-- Notebook contains tutorials on how to use the code
+- All code used is available in the [utils](utils) folder
+- [Notebook](Notebooks) contains tutorials on how to use the code
