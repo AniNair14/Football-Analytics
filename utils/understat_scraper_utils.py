@@ -1,5 +1,4 @@
 # Importing the required packages:
-from ast import Return
 import requests
 from bs4 import BeautifulSoup
 import json
