@@ -25,6 +25,7 @@ def convert_to_statsbomb(
     df[x_cords] = pd.to_numeric(df[x_cords])
     df[y_cords] = pd.to_numeric(df[y_cords])
 
+    # Rescaling the coordinates from 0-1 to 0-100:
     df[x_cords] = df[x_cords] * 100
     df[y_cords] = df[y_cords] * 100
 
