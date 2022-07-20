@@ -16,7 +16,8 @@ def convert_to_statsbomb(
             y_cords (str): Y coordinate column name
         
         Returns:
-            df (pd.DataFrame): Updated Dataframe with Statsbomb X-Y coordinates
+            df (pd.DataFrame): Updated Dataframe with Statsbomb X-Y 
+            coordinates
     
     """
     df = data.copy()
