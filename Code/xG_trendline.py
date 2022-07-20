@@ -29,7 +29,7 @@ fig = plt.figure(figsize=(45, 20))
 # 
 spec = gridspec.GridSpec(ncols=3, nrows=1, figure=fig, wspace=0.03)
 
-# Ax for the gridspec columns:
+# Axis for the gridspec columns:
 ax1 = fig.add_subplot(spec[0,0])
 ax2 = fig.add_subplot(spec[0,1])
 ax3 = fig.add_subplot(spec[0,2])
@@ -65,5 +65,150 @@ for side in ['right','left','top','bottom']:
     ax3.spines['right'].set_visible(False)
     ax3.spines['top'].set_visible(False)
     ax3.spines['left'].set_visible(False)
+
+ax1.spines['left'].set_linestyle((0,(5,5)))
+ax1.spines['right'].set_linestyle((0,(5,5)))
+
+ax2.tick_params(left=False)
+ax2.tick_params(labelleft=False)
+
+ax3.tick_params(left=False)
+ax3.tick_params(labelleft=False)
+
+# Axis values:
+y_axis = [0,0.5,1,1.5,2,2.5]
+x1_axis = [10,20,30]
+x_axis = [0, 10, 20, 30] # For Grids 2 and 3
+
+# Axis Labels:
+y_labels = ['0','0.5','1','1.5','2','2.5']
+x1_labels = ['10', '20', '30']
+x_labels = ['0','10','20','30'] # For Grids 2 and 3
+
+# Setting the ticks for the first Grid:
+ax1.set_xticks(x1_axis)
+ax1.set_yticks(y_axis)
+
+# Setting the ticks for the second Grid: 
+ax2.set_xticks(x_axis)
+ax2.set_yticks(y_axis)
+
+# Setting the ticks for the third Grid:
+ax3.set_xticks(x_axis)
+ax3.set_yticks(y_axis)
+
+# Setting the labels and color for the ticks in the first Grid:
+ax1.set_xticklabels(
+    x1_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+ax1.set_yticklabels(
+    y_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+# Setting the labels and color for the ticks in the second Grid:
+ax2.set_xticklabels(
+    x_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+ax2.set_yticklabels(
+    y_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+# Setting the labels and color for the ticks in the third Grid:
+ax3.set_xticklabels(
+    x_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+ax3.set_yticklabels(
+    y_labels,
+    color='white',
+    size=12,
+    fontweight='bold'
+)
+
+# Setting x-axis limits:
+ax1.set_xlim(0,39)
+ax2.set_xlim(0,39)
+ax3.set_xlim(0,39)
+
+# Setting y-axis limits:
+ax1.set_ylim(0,2.7)
+ax2.set_ylim(0,2.7)
+ax3.set_ylim(0,2.7)
+
+ax1.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
+ax2.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
+ax3.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
+
+
+# Axis Label text:
+y_text_label = ax1.text(
+    -6,0.75,
+    "Expected Goals per Game", 
+    rotation=90, 
+    color='white', 
+    size=20, 
+    fontfamily=body_font, 
+    zorder=2
+) 
+
+y_text_label.set_path_effects([path_effects.withStroke(
+    linewidth=4,
+    foreground=bg
+)])
+
+x_text_label = ax1.text(
+    55,-0.2, 
+    "Match Number", 
+    color='white', 
+    size=20, 
+    fontfamily=body_font, 
+    zorder=2
+)
+
+x_text_label.set_path_effects([path_effects.withStroke(
+    linewidth=4,
+    foreground=bg
+)])
+
+# Title:
+title =\
+fig_text(
+    s="How Chelsea's expected goals <for> & <against> trend over time",
+    x=0.3,
+    y=1,
+    color='white',
+    fontfamily=title_font,
+    fontsize=25,
+    highlight_textprops=[{'color': '#2F2FFF'},
+                         {'color': '#FF0000'}],
+    fontweight='bold'
+)
+
+fig.text(
+    0.315,0.94, 
+    "10 game rolling average | English Premier League | Seasons 2019/20 - 21/22", 
+    color='white', 
+    size=20, 
+    fontfamily=body_font, 
+    zorder=2
+)
+
 
 plt.show()
