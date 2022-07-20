@@ -15,7 +15,8 @@ def scrape_shots(
             player_id (str): Player ID as specified by understat
         
         Returns:
-            df (pd.DataFrame): Dataframe containing the shot data of specified player
+            df (pd.DataFrame): Dataframe containing the shot data of 
+            specified player
 
     """
     base_url = 'https://understat.com/player/'
