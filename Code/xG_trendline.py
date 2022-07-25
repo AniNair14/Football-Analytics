@@ -8,6 +8,7 @@ import matplotlib.patheffects as path_effects
 from highlight_text import HighlightText
 from highlight_text import ax_text
 from highlight_text import fig_text
+from requests import head
 
 # Loading in the Dataset:
 df = pd.read_excel('Data/Chelsea_xG.xlsx')
@@ -15,12 +16,12 @@ df = pd.read_excel('Data/Chelsea_xG.xlsx')
 # Calculating 10 game Rolling Average for xG For and xG Against:
 df['roll_xGF'] = df['xG'].rolling(
     window=10,
-    min_periods=0
+    center=False
 ).mean()
 
 df['roll_xGA'] = df['xGA'].rolling(
     window=10,
-    min_periods=0
+    center=False
 ).mean()
 
 # Creating the Figure for the plot:
@@ -155,6 +156,80 @@ ax3.set_ylim(0,2.7)
 ax1.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax2.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax3.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
+
+# Plotting the figure:
+for i in range(len(df)):
+    if df['Season'].iloc[i] == '19/20':
+        ax1.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGF'].iloc[i],
+            s=100, 
+            color='#2F2FFF', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
+        
+        ax1.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGA'].iloc[i],
+            s=100, 
+            color='#FF0000', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
+
+        ax1.plot(
+            df['Round'],
+            df['roll_xGF'],
+            color='#2F2FFF', 
+            zorder=2, 
+            lw=3, 
+            mec=bg
+        )
+    
+    elif df['Season'].iloc[i] == '20/21':
+        ax2.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGF'].iloc[i],
+            s=100, 
+            color='#2F2FFF', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
+        
+        ax2.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGA'].iloc[i],
+            s=100, 
+            color='#FF0000', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
+
+    else:
+        ax3.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGF'].iloc[i],
+            s=100, 
+            color='#2F2FFF', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
+        
+        ax3.scatter(
+            df['Round'].iloc[i],
+            df['roll_xGA'].iloc[i],
+            s=100, 
+            color='#FF0000', 
+            edgecolors=bg, 
+            zorder=3, 
+            linewidth=1
+        )
 
 
 # Axis Label text:
