@@ -183,121 +183,77 @@ third = split_seasons(
     season= '21/22'
 )
 
-# Plotting for the 2019-20 season:
-ax1.plot(
-    first['Round'].tolist(),
-    first['roll_xGF'].tolist(),
-    color='#2F2FFF', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
+# Function for plotting the data:
+def line_plots(axis, dataframe, xG_for, xG_against):
+    """Function to create the lineplot for the xG trend graph
+
+
+    
+    """
+    # xG for:-
+    axis.plot(
+        dataframe['Round'].tolist(),
+        dataframe[xG_for].tolist(),
+        color='#2F2FFF', 
+        zorder=2, 
+        lw=2, 
+        mec=bg
+    )
+
+    axis.scatter(
+        dataframe['Round'].tolist(),
+        dataframe[xG_for].tolist(),
+        s=100, 
+        color='#2F2FFF', 
+        edgecolors=bg, 
+        zorder=3, 
+        linewidth=1
+    )
+
+    # xG Against:
+    axis.plot(
+        dataframe['Round'].tolist(),
+        dataframe[xG_against].tolist(),
+        color='#FF0000', 
+        zorder=2, 
+        lw=2, 
+        mec=bg
+    )
+
+    axis.scatter(
+        dataframe['Round'].tolist(),
+        dataframe[xG_against].tolist(),
+        s=100, 
+        color='#FF0000', 
+        edgecolors=bg, 
+        zorder=3, 
+        linewidth=1
+    )
+
+    return axis
+
+# Plotting the 2019-20 season data:
+first_plot = line_plots(
+    axis=ax1,
+    dataframe=first,
+    xG_for='roll_xGF',
+    xG_against='roll_xGA'
 )
 
-ax1.scatter(
-    first['Round'].tolist(),
-    first['roll_xGF'].tolist(),
-    s=100, 
-    color='#2F2FFF', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
+# Plotting the 2020-21 season data:
+second_plot = line_plots(
+    axis=ax2,
+    dataframe=second,
+    xG_for='roll_xGF',
+    xG_against='roll_xGA'
 )
 
-ax1.plot(
-    first['Round'].tolist(),
-    first['roll_xGA'].tolist(),
-    color='#FF0000', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
-)
-
-ax1.scatter(
-    first['Round'].tolist(),
-    first['roll_xGA'].tolist(),
-    s=100, 
-    color='#FF0000', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
-)
-
-# Plotting for the 2020-21 season:
-ax2.plot(
-    second['Round'].tolist(),
-    second['roll_xGF'].tolist(),
-    color='#2F2FFF', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
-)
-
-ax2.scatter(
-    second['Round'].tolist(),
-    second['roll_xGF'].tolist(),
-    s=100, 
-    color='#2F2FFF', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
-)
-
-ax2.plot(
-    second['Round'].tolist(),
-    second['roll_xGA'].tolist(),
-    color='#FF0000', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
-)
-
-ax2.scatter(
-    second['Round'].tolist(),
-    second['roll_xGA'].tolist(),
-    s=100, 
-    color='#FF0000', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
-)
-
-# Plotting for the 2021-22 season:
-ax3.plot(
-    third['Round'].tolist(),
-    third['roll_xGF'].tolist(),
-    color='#2F2FFF', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
-)
-
-ax3.scatter(
-    third['Round'].tolist(),
-    third['roll_xGF'].tolist(),
-    s=100, 
-    color='#2F2FFF', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
-)
-
-ax3.plot(
-    third['Round'].tolist(),
-    third['roll_xGA'].tolist(),
-    color='#FF0000', 
-    zorder=2, 
-    lw=2, 
-    mec=bg
-)
-
-ax3.scatter(
-    third['Round'].tolist(),
-    third['roll_xGA'].tolist(),
-    s=100, 
-    color='#FF0000', 
-    edgecolors=bg, 
-    zorder=3, 
-    linewidth=1
+# Plotting the 2021-22 season data:
+third_plot = line_plots(
+    axis=ax3,
+    dataframe=third,
+    xG_for='roll_xGF',
+    xG_against='roll_xGA'
 )
 
 # Axis Label text:
