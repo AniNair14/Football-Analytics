@@ -187,8 +187,11 @@ third = split_seasons(
 def line_plots(axis, dataframe, xG_for, xG_against):
     """Function to create the lineplot for the xG trend graph
 
-
-    
+        Parameters:
+            axis- Plot axis
+            dataframe- Pandas Dataframe containing data
+            xG_for- Column name for running xG scored
+            xG_against- Column name for running xG conceded    
     """
     # xG for:-
     axis.plot(
