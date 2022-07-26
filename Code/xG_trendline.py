@@ -256,6 +256,55 @@ third_plot = line_plots(
     xG_against='roll_xGA'
 )
 
+# Axis Titles:
+axis_1_text = ax1.text(
+    17,
+    2.75,
+    "2019-20",
+    color='white',
+    fontfamily=body_font,
+    size=17.5,
+    fontweight='bold',
+    zorder=2
+)
+
+axis_1_text.set_path_effects([path_effects.withStroke(
+    linewidth=4,
+    foreground=bg
+)])
+
+axis_2_text = ax2.text(
+    17,
+    2.75,
+    "2020-21",
+    color='white',
+    fontfamily=body_font,
+    size=17.5,
+    fontweight='bold',
+    zorder=2
+)
+
+axis_2_text.set_path_effects([path_effects.withStroke(
+    linewidth=4,
+    foreground=bg
+)])
+
+axis_3_text = ax3.text(
+    17,
+    2.75,
+    "2021-22",
+    color='white',
+    fontfamily=body_font,
+    size=17.5,
+    fontweight='bold',
+    zorder=2
+)
+
+axis_3_text.set_path_effects([path_effects.withStroke(
+    linewidth=4,
+    foreground=bg
+)])
+
 # Axis Label text:
 y_text_label = ax1.text(
     -6,0.75,
