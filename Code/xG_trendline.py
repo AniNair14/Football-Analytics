@@ -358,5 +358,23 @@ fig.text(
     zorder=2
 )
 
+ax1.text(
+    -3.5,
+    -0.25, 
+    "Data: Fbref | Statsbomb", 
+    color='white', 
+    size=15, 
+    fontfamily=body_font
+)
+
+ax3.text(
+    30,
+    -0.25, 
+    "By: Anish Nair\n(@AniNair14)", 
+    ha='center', 
+    color='white', 
+    size=15, 
+    fontfamily=body_font
+)
 
 plt.show()
