@@ -16,12 +16,12 @@ df = pd.read_excel('Data/Chelsea_xG.xlsx')
 # Calculating 10 game Rolling Average for xG For and xG Against:
 df['roll_xGF'] = df['xG'].rolling(
     window=10,
-    center=False
+    center=True
 ).mean()
 
 df['roll_xGA'] = df['xGA'].rolling(
     window=10,
-    center=False
+    center=True
 ).mean()
 
 # Creating the Figure for the plot:
@@ -157,80 +157,148 @@ ax1.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax2.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax3.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 
-# Plotting the figure:
-for i in range(len(df)):
-    if df['Season'].iloc[i] == '19/20':
-        ax1.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGF'].iloc[i],
-            s=100, 
-            color='#2F2FFF', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
-        
-        ax1.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGA'].iloc[i],
-            s=100, 
-            color='#FF0000', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
+def split_seasons(dataframe, season):
+    """Function to split the data based on the seasons"""
+    filt = dataframe['Season'] == season
 
-        ax1.plot(
-            df['Round'],
-            df['roll_xGF'],
-            color='#2F2FFF', 
-            zorder=2, 
-            lw=3, 
-            mec=bg
-        )
-    
-    elif df['Season'].iloc[i] == '20/21':
-        ax2.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGF'].iloc[i],
-            s=100, 
-            color='#2F2FFF', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
-        
-        ax2.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGA'].iloc[i],
-            s=100, 
-            color='#FF0000', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
+    new_df = dataframe[filt]
 
-    else:
-        ax3.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGF'].iloc[i],
-            s=100, 
-            color='#2F2FFF', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
-        
-        ax3.scatter(
-            df['Round'].iloc[i],
-            df['roll_xGA'].iloc[i],
-            s=100, 
-            color='#FF0000', 
-            edgecolors=bg, 
-            zorder=3, 
-            linewidth=1
-        )
+    return new_df
 
+# 2019/20 season:
+first = split_seasons(
+    dataframe=df, 
+    season= '19/20'
+)
+
+# 2020/21 season:
+second = split_seasons(
+    dataframe=df, 
+    season= '20/21'
+)
+
+# 2021/22 season:
+third = split_seasons(
+    dataframe=df, 
+    season= '21/22'
+)
+
+# Plotting for the 2019-20 season:
+ax1.plot(
+    first['Round'].tolist(),
+    first['roll_xGF'].tolist(),
+    color='#2F2FFF', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax1.scatter(
+    first['Round'].tolist(),
+    first['roll_xGF'].tolist(),
+    s=100, 
+    color='#2F2FFF', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
+
+ax1.plot(
+    first['Round'].tolist(),
+    first['roll_xGA'].tolist(),
+    color='#FF0000', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax1.scatter(
+    first['Round'].tolist(),
+    first['roll_xGA'].tolist(),
+    s=100, 
+    color='#FF0000', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
+
+# Plotting for the 2020-21 season:
+ax2.plot(
+    second['Round'].tolist(),
+    second['roll_xGF'].tolist(),
+    color='#2F2FFF', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax2.scatter(
+    second['Round'].tolist(),
+    second['roll_xGF'].tolist(),
+    s=100, 
+    color='#2F2FFF', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
+
+ax2.plot(
+    second['Round'].tolist(),
+    second['roll_xGA'].tolist(),
+    color='#FF0000', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax2.scatter(
+    second['Round'].tolist(),
+    second['roll_xGA'].tolist(),
+    s=100, 
+    color='#FF0000', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
+
+# Plotting for the 2021-22 season:
+ax3.plot(
+    third['Round'].tolist(),
+    third['roll_xGF'].tolist(),
+    color='#2F2FFF', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax3.scatter(
+    third['Round'].tolist(),
+    third['roll_xGF'].tolist(),
+    s=100, 
+    color='#2F2FFF', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
+
+ax3.plot(
+    third['Round'].tolist(),
+    third['roll_xGA'].tolist(),
+    color='#FF0000', 
+    zorder=2, 
+    lw=2, 
+    mec=bg
+)
+
+ax3.scatter(
+    third['Round'].tolist(),
+    third['roll_xGA'].tolist(),
+    s=100, 
+    color='#FF0000', 
+    edgecolors=bg, 
+    zorder=3, 
+    linewidth=1
+)
 
 # Axis Label text:
 y_text_label = ax1.text(
@@ -267,7 +335,7 @@ title =\
 fig_text(
     s="How Chelsea's expected goals <for> & <against> trend over time",
     x=0.3,
-    y=1,
+    y=0.99,
     color='white',
     fontfamily=title_font,
     fontsize=25,
