@@ -1,4 +1,5 @@
 # Importing the required libraries:
+import matplotlib
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -157,8 +158,13 @@ ax1.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax2.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 ax3.grid(zorder=1,color="white",alpha=0.5, linestyle=((0,(5,5))))
 
-def split_seasons(dataframe, season):
-    """Function to split the data based on the seasons"""
+def split_seasons(dataframe: pd.DataFrame, season: str)-> pd.DataFrame:
+    """Function to split the data based on the seasons
+    
+        Parameters:
+            dataframe (pd.DataFrame): The dataframe containing the data
+            season (str): Column name containing the season values
+    """
     filt = dataframe['Season'] == season
 
     new_df = dataframe[filt]
@@ -184,14 +190,19 @@ third = split_seasons(
 )
 
 # Function for plotting the data:
-def line_plots(axis, dataframe, xG_for, xG_against):
+def line_plots(
+    axis: matplotlib.axes, 
+    dataframe: pd.DataFrame, 
+    xG_for: str, 
+    xG_against: str
+)-> matplotlib.axes:
     """Function to create the lineplot for the xG trend graph
 
         Parameters:
-            axis- Plot axis
-            dataframe- Pandas Dataframe containing data
-            xG_for- Column name for running xG scored
-            xG_against- Column name for running xG conceded    
+            axis (matplotlib.axes): Plot axis
+            dataframe (pd.DataFrame) Pandas Dataframe containing data
+            xG_for (str): Column name for running xG scored
+            xG_against (str) Column name for running xG conceded    
     """
     # xG for:-
     axis.plot(
@@ -379,5 +390,12 @@ ax3.text(
     size=15, 
     fontfamily=body_font
 )
+
+# plt.savefig(
+#     "Plots/Chelsea_Trend.jpg", 
+#     facecolor=bg,
+#     bbox_inches="tight", 
+#     dpi=700
+# )
 
 plt.show()
