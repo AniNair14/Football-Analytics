@@ -73,7 +73,7 @@ def statsbomb_pitch_vert(
     pitch.draw(ax = ax)
 
     if grid:
-        y_lines = [120 - 6.5*x for x in range(1,10)]
+        y_lines = [120 - 6.2*x for x in range(1,10)]
         x_lines = [80 - 8.0*x for x in range(1,10)]
 
         for i in x_lines:
