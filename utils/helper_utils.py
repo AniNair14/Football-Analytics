@@ -1,6 +1,9 @@
 # Importing the required packages:
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patheffects as path_effects
+from mplsoccer import Pitch, VerticalPitch
 
 def convert_to_statsbomb(
     data: pd.DataFrame,
@@ -41,3 +44,32 @@ def convert_to_statsbomb(
     df[y_cords] = df[y_cords] * 1.2
 
     return df
+
+
+def statsbomb_pitch_vert(
+    ax: plt.Axes,
+    bg: str,
+    grid: bool = False
+)->plt.Axes:
+    """
+    Function to plot a Vertical Statsbomb football pitch
+
+        Parameters:
+            ax (plt.Axes): Axes specified for the Statsbomb pitch
+            bg (str): Background color 
+            grid (bool): Specifing whether grid lines should be drawn on the pitch or not
+
+        Returns:
+            ax (plt.Axes): Vertical pitch with Statsbomb coordinates
+    """
+    pitch = VerticalPitch(
+        half=True,
+        pitch_type= 'statsbomb',
+        pitch_color=bg,
+        goal_type='box',
+        line_color='grey'
+    )
+
+    pitch.draw(ax = ax)
+
+    return ax
