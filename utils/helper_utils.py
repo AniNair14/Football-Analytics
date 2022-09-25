@@ -67,9 +67,31 @@ def statsbomb_pitch_vert(
         pitch_type= 'statsbomb',
         pitch_color=bg,
         goal_type='box',
-        line_color='grey'
+        line_color='grey',
     )
 
     pitch.draw(ax = ax)
+
+    if grid:
+        y_lines = [120 - 6.5*x for x in range(1,10)]
+        x_lines = [80 - 8.0*x for x in range(1,10)]
+
+        for i in x_lines:
+            ax.plot(
+                [i, i], [45, 120],
+                color='grey',
+                ls = '--',
+                lw=0.75,
+                zorder=1
+            )
+
+        for j in y_lines:
+            ax.plot(
+                [0, 80], [j, j],
+                color='grey',
+                ls='--',
+                lw='0.75',
+                zorder=1
+            )
 
     return ax
