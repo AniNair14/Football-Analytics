@@ -95,3 +95,65 @@ def statsbomb_pitch_vert(
             )
 
     return ax
+
+def shot_map(
+    axis: plt.Axes,
+    data: pd.DataFrame,
+    situation: str,
+    x_pos: str,
+    y_pos: str,
+    color: str,
+    edge_col: str
+)->plt.axes:
+    """
+    Function to plot a shot map on a football pitch
+
+        Parameters:
+            axis (plt.Axes): Axes specified for the football pitch
+            data (pd.DataFrame): Dataframe containing the Shot data
+            situation (str): Result after the shot (Goal or not)
+            x_pos (str): Values of x-coordinate of the shot
+            y_pos (str): Values of y-coordinate of the shot
+            color (str): Color for the scatter plots of the shot
+            edge_col (str): Color for the edges of the scatter plots
+
+        Returns:
+            axis (plt.Axes): Shot Map
+    """
+    if situation == 'Goal':
+        filt = data['result'] == situation
+
+        data = data[filt]
+
+        size = np.sqrt(data['xG'].astype(float))*500
+
+        axis.scatter(
+            data[x_pos].tolist(),
+            data[y_pos].tolist(),
+            s=size,
+            alpha=0.7,
+            color=color,
+            edgecolor=edge_col,
+            zorder=4,
+            lw=2.2
+        )
+
+    else:
+        filt = data['result'] != 'Goal'
+
+        data = data[filt]
+
+        size = np.sqrt(data['xG'].astype(float))*500
+
+        axis.scatter(
+            data[x_pos].tolist(),
+            data[y_pos].tolist(),
+            s=size,
+            alpha=0.45,
+            color=color,
+            edgecolor=edge_col,
+            zorder=3,
+            lw=1.25
+        )
+
+    return axis
