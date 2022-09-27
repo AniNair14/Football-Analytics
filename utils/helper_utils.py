@@ -235,3 +235,131 @@ def assign_shot_zones(
             ):
                 return zone
 
+def plot_shot_zones(
+    axis: plt.Axes,
+    bg: str,
+    grid_col: str,
+    zone_col: str,
+    text_col: str,
+    font: str,
+    data: pd.DataFrame,
+)-> plt.Axes:
+    """
+    Function to plot the shot zones on a shot map
+
+        Parameters:
+            axis (plt.Axes): Axes to plot the shot zone map
+            bg (str): Background color of the pitch
+            grid_col (str): Color of the grids on the pitch for the zones
+            zone_col (str): Color of the zone regions on the pitch
+            text_col (str): Color of the text on the plot
+            font (str): Font of the text
+            data (pd.DataFrame): Dataframe containing the shot and zone information of the player
+
+        Returns:
+            axis (plt.Axes): Shot zone plot 
+
+    """
+    global zone_areas
+
+    pitch = VerticalPitch(
+        half=True,
+        pitch_type= 'statsbomb',
+        pitch_color=bg,
+        goal_type='box',
+        line_color='grey',
+    )
+
+    pitch.draw(ax = axis)
+
+    # Plotting the grids:
+    axis.plot(
+        [62.0, 62.0], [40.0, 102.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [18.0, 18.0], [40.0, 102.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [30.0, 30.0], [102.0, 114.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [50.0, 50.0], [102.0, 114.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [62.0, 80.0], [102.0, 102.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [18.0, 0.0], [102.0, 102.0], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+    axis.plot(
+        [18.0, 62.0], [85.8, 85.8], 
+        ls='--', 
+        color=grid_col, 
+        lw=0.75
+    )
+
+    max_value = data['pct'].max()
+
+    for zone in data['zone_area']:
+        shot_pct = data[
+            data['zone_area'] == zone
+        ]['pct'].iloc[0]
+        
+        x_lim = [
+            zone_areas[zone]['x_lower_bound'], 
+            zone_areas[zone]['x_upper_bound']
+        ]
+        y1 = zone_areas[zone]['y_lower_bound']
+        y2 = zone_areas[zone]['y_upper_bound']
+        
+        axis.fill_between(
+            x=x_lim, 
+            y1=y1, 
+            y2=y2, 
+            color=zone_col, 
+            alpha=(shot_pct/max_value),
+            zorder=0, 
+            ec='None'
+        )
+       
+        if shot_pct > 0.05:
+            x_pos = x_lim[0] + abs(x_lim[0] - x_lim[1])/2
+            y_pos = y1 + abs(y1 - y2)/2
+            text_ = axis.annotate(
+                xy=(x_pos, y_pos),
+                text=f'{shot_pct:.0%}',
+                ha='center',
+                va='center',
+                color=text_col,
+                fontfamily=font,
+                weight='bold',
+                size=16
+            )
+            text_.set_path_effects(
+                [
+                    path_effects.Stroke(
+                        linewidth=1.5, foreground='black'
+                    ), 
+                    path_effects.Normal()
+                ]
+            )
+    
+    return axis
