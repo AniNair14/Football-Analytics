@@ -157,3 +157,81 @@ def shot_map(
         )
 
     return axis
+
+# Defining zone areas for shot zone plot:
+zone_areas = {
+    'zone_1': {
+        'x_lower_bound': 0.0, 'x_upper_bound': 18.0,
+        'y_lower_bound': 102.0, 'y_upper_bound': 120.0,
+    },
+    'zone_2': {
+        'x_lower_bound': 62.0, 'x_upper_bound': 80.0,
+        'y_lower_bound': 102.0, 'y_upper_bound': 120.0,
+    },
+    'zone_3': {
+        'x_lower_bound': 0.0, 'x_upper_bound': 18.0,
+        'y_lower_bound': 55.0, 'y_upper_bound': 102.0,        
+    },
+    'zone_4': {
+        'x_lower_bound': 62.0, 'x_upper_bound': 80.0,
+        'y_lower_bound': 55.0, 'y_upper_bound': 102.0,
+    },
+    'zone_5': {
+        'x_lower_bound': 50.0, 'x_upper_bound': 62.0,
+        'y_lower_bound': 102.0, 'y_upper_bound': 120.0,
+    },
+    'zone_6': {
+        'x_lower_bound': 18.0, 'x_upper_bound': 30.0,
+        'y_lower_bound': 102.0, 'y_upper_bound': 120.0,
+    },
+    'zone_7': {
+        'x_lower_bound': 30.0, 'x_upper_bound': 50.0,
+        'y_lower_bound': 102.0, 'y_upper_bound': 114.0,
+    },
+    'zone_8': {
+        'x_lower_bound': 30.0, 'x_upper_bound': 50.0,
+        'y_lower_bound': 114.0, 'y_upper_bound': 120.0,
+    },
+    'zone_9': {
+        'x_lower_bound': 50.0, 'x_upper_bound': 62.0,
+        'y_lower_bound': 85.8, 'y_upper_bound': 102.0,
+    },
+    'zone_10': {
+        'x_lower_bound': 18.0, 'x_upper_bound': 30.0,
+        'y_lower_bound': 85.8, 'y_upper_bound': 102.0,
+    },
+    'zone_11': {
+        'x_lower_bound': 30.0, 'x_upper_bound': 50.0,
+        'y_lower_bound': 85.8, 'y_upper_bound': 102.0,
+    },
+    'zone_12': {
+        'x_lower_bound': 18.0, 'x_upper_bound': 62.0,
+        'y_lower_bound': 55.0, 'y_upper_bound': 85.8,
+    }
+}
+
+def assign_shot_zones(
+    x: float,
+    y: float
+)-> str:
+    """
+    Function to assign shot zones based on x and y coordinate values of the shot
+
+        Parameters:
+            x (float): x coordinate of the shot
+            y (float): y coordinate of the shot
+
+        Returns:
+            zone (str): Shot zone based on x and y coordinate values of the shot 
+    """
+    global zone_areas
+
+    for zone in zone_areas:
+        if (
+            (x >= zone_areas[zone]['x_lower_bound']) & (x <= zone_areas[zone]['x_upper_bound'])
+        ):
+            if (
+                (y >= zone_areas[zone]['y_lower_bound']) & (y <= zone_areas[zone]['y_upper_bound'])
+            ):
+                return zone
+
