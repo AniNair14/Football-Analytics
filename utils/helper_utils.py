@@ -9,7 +9,7 @@ def convert_to_statsbomb(
     data: pd.DataFrame,
     x_cords: str,
     y_cords: str
-):
+)-> pd.DataFrame:
     """
     Function to convert understat X and Y coordinate data to Statsbomb coordinates
 
@@ -228,10 +228,12 @@ def assign_shot_zones(
 
     for zone in zone_areas:
         if (
-            (x >= zone_areas[zone]['x_lower_bound']) & (x <= zone_areas[zone]['x_upper_bound'])
+            (x >= zone_areas[zone]['x_lower_bound']) 
+            & (x <= zone_areas[zone]['x_upper_bound'])
         ):
             if (
-                (y >= zone_areas[zone]['y_lower_bound']) & (y <= zone_areas[zone]['y_upper_bound'])
+                (y >= zone_areas[zone]['y_lower_bound']) 
+                & (y <= zone_areas[zone]['y_upper_bound'])
             ):
                 return zone
 
@@ -327,6 +329,7 @@ def plot_shot_zones(
             zone_areas[zone]['x_lower_bound'], 
             zone_areas[zone]['x_upper_bound']
         ]
+        
         y1 = zone_areas[zone]['y_lower_bound']
         y2 = zone_areas[zone]['y_upper_bound']
         
