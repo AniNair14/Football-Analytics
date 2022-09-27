@@ -19,3 +19,9 @@ A repository that contains code related to football analytics and visualization 
 - All Functions used is available in the [utils](utils) folder
 - [Notebook](Notebooks) contains tutorials on how to use the functions
   
+## Inspirations and References:
+A list of twitter accounts who have been inspirations for the visualizations templates
+- [https://twitter.com/jonollington]()
+- [https://twitter.com/petermckeever]()
+- [https://twitter.com/sonofacorner]()
+- [https://twitter.com/DanielKatona17]()
