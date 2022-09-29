@@ -366,3 +366,64 @@ def plot_shot_zones(
             )
     
     return axis
+
+def line_plots(
+    axis: plt.Axes, 
+    dataframe: pd.DataFrame, 
+    xG_for: str, 
+    xG_against: str,
+    bg:str
+)-> plt.Axes:
+    """Function to create the lineplot for the xG trend graph
+
+        Parameters:
+            axis (plt.Axes): Plot axis
+            dataframe (pd.DataFrame) Pandas Dataframe containing data
+            xG_for (str): Column name for running xG scored
+            xG_against (str): Column name for running xG conceded  
+            bg (str): Background Color for the plot
+
+        Returns:
+            axis (plt.Axes): Plot with xG trend lines
+    """
+    # xG for:-
+    axis.plot(
+        dataframe['Round'].tolist(),
+        dataframe[xG_for].tolist(),
+        color='#2F2FFF', 
+        zorder=2, 
+        lw=2, 
+        mec=bg
+    )
+
+    axis.scatter(
+        dataframe['Round'].tolist(),
+        dataframe[xG_for].tolist(),
+        s=100, 
+        color='#2F2FFF', 
+        edgecolors=bg, 
+        zorder=3, 
+        linewidth=1
+    )
+
+    # xG Against:
+    axis.plot(
+        dataframe['Round'].tolist(),
+        dataframe[xG_against].tolist(),
+        color='#FF0000', 
+        zorder=2, 
+        lw=2, 
+        mec=bg
+    )
+
+    axis.scatter(
+        dataframe['Round'].tolist(),
+        dataframe[xG_against].tolist(),
+        s=100, 
+        color='#FF0000', 
+        edgecolors=bg, 
+        zorder=3, 
+        linewidth=1
+    )
+
+    return axis
