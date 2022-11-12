@@ -21,7 +21,7 @@ A repository that contains code related to football analytics and visualization 
   
 ## Inspirations and References:
 A list of twitter accounts who have been inspirations for the visualizations templates
-- [https://twitter.com/jonollington]()
-- [https://twitter.com/petermckeever]()
-- [https://twitter.com/sonofacorner]()
-- [https://twitter.com/DanielKatona17]()
+- [Jon Ollington](https://twitter.com/jonollington)
+- [Peter Mckeever](https://twitter.com/petermckeever)
+- [Son of a Corner](https://twitter.com/sonofacorner)
+- [Daniel Katona](https://twitter.com/DanielKatona17)
